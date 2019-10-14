@@ -51,10 +51,7 @@ function inventory() {
 
     listInventory();
 
-    // table is an Array, so you can `push`, `unshift`, `splice` and friends
     function listInventory() {
-
-        //Variable creation from DB connection
 
         connection.query("SELECT * FROM products", function (err, res) {
             for (var i = 0; i < res.length; i++) {
@@ -71,9 +68,7 @@ function inventory() {
             }
 
             console.log("====================================================== Bamazon Inventory ======================================================");
-
             console.log(table.toString());
-
             continueDisplay();
         });
     }
@@ -100,7 +95,7 @@ function continueDisplay() {
 }
 
 //=================================Item selection and Quantity desired===============================
-
+//prompts the user to enter the item ID and units that he would like to purchase........
 function selectionPrompt() {
 
     inquirer.prompt([{
@@ -112,7 +107,7 @@ function selectionPrompt() {
     {
         type: "input",
         name: "inputNumber",
-        message: "How many units of this item would you like to purchase?",
+        message: "How many units of this item would you like to purchase?"
 
     }
     ]).then(function (userPurchase) {
@@ -136,10 +131,10 @@ function selectionPrompt() {
                     var finalPrice = totalPrice + taxValue;
 
                     //list item information for user for confirm prompt
-                    console.log("=====================================");
-                    console.log("GREAT....! We can fulfull your order.");
-                    console.log("=====================================");
-                    console.log("Your Order:");
+                    console.log("===============================================");
+                    console.log("----GREAT.!!!! your order is under process.----");
+                    console.log("===============================================");
+                    console.log("--------Here is your INVOICE look like---------");
                     console.log("-----------------------------------------------");
                     console.log("Item                 : " + res[i].product_name);
                     console.log("Department           : " + res[i].department_name);
@@ -192,6 +187,7 @@ function confirmPrompt(newStock, purchaseId) {
             console.log("=================================");
             console.log("No problem. Maybe next time!");
             console.log("=================================");
+            //once the transcation is completed display the most updated inventory.......
             startDisplay();
         }
     });
