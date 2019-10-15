@@ -55,7 +55,6 @@ function inventoryUpdates() {
 		}
 	});
 };
-
 //once manager picks an option "restockRequest()" prompt to ask the Id and Units to restock....
 function restockRequest() {
 
